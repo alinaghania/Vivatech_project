@@ -1,14 +1,16 @@
 import streamlit as st
 import base64
 import requests
-import json
 import components
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
+api_key = os.getenv("API_KEY")
 
 def submit(image, api_key, voice, hd):
     
-    api_key ='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'
     headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
 
     base64_image = base64.b64encode(image).decode("utf-8")
@@ -18,16 +20,16 @@ def submit(image, api_key, voice, hd):
         "messages": [
             {
                 "role": "system",
-                "content": "courte description. ",
+                "content": "Ton objectif est de remplir des constats pour des accidents de voiture, tu travailles dans une assurance ",
             },
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "decrit l'image precisement "
-                        "direct  "
-                        "en fr et finis avec des compliments.",
+                        "text": "Soit le plus précis possible sur l'accident pour le constat, l'objectif est de savoir qui est en tord. "
+                        "Soit direct  "
+                        "en fr .",
                     },
                     {
                         "type": "image_url",
@@ -77,7 +79,6 @@ def submit(image, api_key, voice, hd):
 
 
 def run():
-    api_key ="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"
     selected_option = st.radio(
         "Image Input",
         ["Camera", "Image File"],
@@ -89,8 +90,6 @@ def run():
         image = components.camera_uploader()
     else:
         image = components.image_uploader()
-
-    # api_key = components.api_key_with_warning()
 
     voice = st.selectbox(
         "AI Voice",

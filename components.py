@@ -76,7 +76,5 @@ def inc_sidebar_nav_height():
     )
 
 
-
-
 def toggle_balloons():
     st.session_state.balloons = st.sidebar.checkbox("Show balloons", True)
