@@ -20,14 +20,14 @@ def submit(image, api_key, voice, hd):
         "messages": [
             {
                 "role": "system",
-                "content": "Ton objectif est de remplir des constats pour des accidents de voiture, tu travailles dans une assurance ",
+                "content": "Ton objectif est de fournir une premiere évaluation approfondie de l'état de la voiture et des réparations nécessaires. Mentionne les dommages visibles, les pièces à changer si visible à l'oeil, et tout indice pouvant indiquer la cause des dommages, et une estimation des réparations, bien sur ce ne sont que des suppositions et tu le rappelera dans ton rapport, j'aimerai que ta réponse soit un rapport adressé à un client",
             },
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Soit le plus précis possible sur l'accident pour le constat, l'objectif est de savoir qui est en tord. "
+                        "text": "Soit le plus précis possible sur les dégats, l'objectif est de savoir quels sont les dégats et comment y remedier, quels sont les pièces à changer et comment les changer par example, ou le prix des reparations (une estimation), ton objetcif est d'adresser un bilan complet de l'état de la voiture avec une estimation des réparations."
                         "Soit direct  "
                         "en fr .",
                     },
@@ -116,7 +116,7 @@ components.inc_sidebar_nav_height()
 st.write("# 🗣️ Speech")
 st.write("Generate audio from an image using GPT-4V + OpenAI TTS.")
 st.info(
-    "This is a test of the OpenAI GPT-4V preview and is not intended for production use."
+    "Your new garagist, but cheaper! 🤖"
 )
 st.write("\n")
 
