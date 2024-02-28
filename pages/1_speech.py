@@ -113,7 +113,7 @@ def run():
 
 st.set_page_config(page_title="GPT-4V Speech", page_icon="🗣️")
 components.inc_sidebar_nav_height()
-st.write("# 🗣️ Speech")
+st.write("# 🗣️ Analyse your car to drive safe ")
 st.write("Generate audio from an image using GPT-4V + OpenAI TTS.")
 st.info(
     "Your new garagist, but cheaper! 🤖"

@@ -8,6 +8,7 @@ import os
 
 
 
+
 def generate_description_and_schema(image, api_key):
     headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
 
@@ -18,7 +19,7 @@ def generate_description_and_schema(image, api_key):
         "messages": [
             {
                 "role": "system",
-                "content": " Décris l'accident montré sur la photo de manière détaillée pour déterminer les responsabilités. Mentionne la position des véhicules, les dommages visibles, et tout indice pouvant indiquer la cause de l'accident.",
+                "content": " Décris l'accident le plus précisement possible.",
             },
             {
                 "role": "user",
@@ -50,8 +51,10 @@ def generate_description_and_schema(image, api_key):
         # Utiliser DALL-E pour générer une image à partir de la variable text
         client = OpenAI(api_key=api_key)
 
-        context = "Based on the sequence of images provided, here is a detailed description leading up to the accident:1. The first few frames show a clear day with traffic lights visible and an intersection controlled by these lights. The camera vehicle is stopped at a red light, and a red sedan appears to be executing a right turn on red onto the cross street in front of the camera vehicle.2. The red sedan continues its turn, and as it completes the turn, the traffic light for the camera vehicle's direction turns green.3. Immediately after the light turns green, the camera vehicle begins to accelerate forward into the intersection. During this time, there's a pedestrian waiting to cross the street, standing on the camera vehicle's right-hand side at the crosswalk.4. As the camera vehicle enters the intersection, the pedestrian begins to cross in front of the camera vehicle. The pedestrian has started to cross against the traffic signal, as it is likely they had a Don't Walk indication due to the green light for vehicular traffic.5. While the pedestrian is crossing, a white SUV approaches from the left at a perpendicular angle to the camera vehicle. This white SUV does not have the right of way as it is facing a red light.6. The white SUV proceeds into the intersection, ignoring the red light, and collides with a black vehicle (which is out of view but its presence is indicated by the impact seen in later frames).7. The white SUV is hit on its left side and rolls over, tipping towards the camera vehicle and eventually landing on its roof in front of the camera vehicle.8. Debris is scattered across the intersection, and the black vehicle involved in the collision with the white SUV is now partially visible after the impact, showing the rear of the vehicle.9. The white SUV remains overturned in the intersection, the red car continues driving away, and the black car moves slowly forward after the collision.From this sequence of events, the fault for the accident appears to lie with the driver of the white SUV for failing to stop at the red light. The pedestrian also crossed inappropriately but does not seem to be involved in the collision between the vehicles. The camera vehicle appears not to have committed any traffic violations leading up to the accident."
-        prompt = f" '{context}'. Le schéma doit clairement montrer la position des véhicules et les zones d'impact."
+        prompt = (f"I NEED to test how the tool works with extremely simple prompts.DO NOT add any detail, just use it AS-IS. "
+          f"Create a simple schema that shows the impact of :'{text}' "
+          f"Diagram should be very simple like a child's drawing.")
+
 
 
         response = client.images.generate(
@@ -76,6 +79,13 @@ def generate_description_and_schema(image, api_key):
 
 
 def run():
+    st.write("# Create a repport of your accident 🚗")
+    st.write("Generate an image using GPT-4V + Dall-e ")
+    st.info(
+        "Your new garagist, but cheaper! 🤖"
+    )
+    st.write("\n")
+
     selected_option = st.radio(
         "Image Input",
         ["Camera", "Image File"],
@@ -102,6 +112,10 @@ def run():
             st.session_state.extracted_text,
             height=400,
         )
+
+
+    
+        
 
 
 run()

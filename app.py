@@ -12,14 +12,14 @@ def run():
 
     st.sidebar.caption(":red[How can i assist you today ?]")
 
-    st.write("# Car Accident ? 🚗")
+    st.write("# Let's go for safe drive 🚗")
     st.write("\n")
     st.info(
-        "I am here to help you with your vision tasks! 🤖"
+        "I am here to help you 🤖"
     )
     st.info("Open them from the sidebar!", icon="↖️")
     st.caption(
-        """ HELLO HELLO MY NAME IS GPT-4V AND I AM YOUR ASSURANCE BOT 🤖 """
+        """ by Yoan & Alina """
     )
     st.write("\n")
    
