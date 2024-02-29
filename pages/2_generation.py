@@ -7,7 +7,7 @@ import os
 
 
 
-
+api_key ="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"
 
 def generate_description_and_schema(image, api_key):
     headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
