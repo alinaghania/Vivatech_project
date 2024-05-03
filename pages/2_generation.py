@@ -4,12 +4,15 @@ import streamlit as st
 from openai import OpenAI
 import components
 import os
+import dotenv
 
 
-
-api_key ="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"
+dotenv.load_dotenv()
+api_key = os.getenv("API_KEY")
 
 def generate_description_and_schema(image, api_key):
+    dotenv.load_dotenv()
+    api_key = os.getenv("API_KEY")
     headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
 
     base64_image = base64.b64encode(image).decode("utf-8")
@@ -19,7 +22,7 @@ def generate_description_and_schema(image, api_key):
         "messages": [
             {
                 "role": "system",
-                "content": " Décris l'accident le plus précisement possible.",
+                "content": " Décris l'accident le plus précisement possible l'aide sera tres utile pour les assureurs. Mentionne les dommages visibles, les pièces à changer si visible à l'oeil, et tout indice pouvant indiquer la cause des dommages, et une estimation des réparations, bien sur ce ne sont que des suppositions et tu le rappelera dans ton rapport, j'aimerai que ta réponse soit un rapport adressé à un client.",
             },
             {
                 "role": "user",
@@ -51,9 +54,15 @@ def generate_description_and_schema(image, api_key):
         # Utiliser DALL-E pour générer une image à partir de la variable text
         client = OpenAI(api_key=api_key)
 
-        prompt = (f"I NEED to test how the tool works with extremely simple prompts.DO NOT add any detail, just use it AS-IS. "
+        prompt = (
+          f"I NEED to test how the tool works with extremely simple prompts.DO NOT add any detail, just use it AS-IS. "
           f"Create a simple schema that shows the impact of :'{text}' "
-          f"Diagram should be very simple like a child's drawing.")
+          f"Diagram should be very simple like a child's drawing."
+          f"The diagram is going to help assurance to understand the accident."
+          f"The diagram should be very simple like a child's drawing."
+          f"Don't add any detail, just use it AS-IS, no text"
+          f"very simple"
+          f"Don't add any text")
 
 
 

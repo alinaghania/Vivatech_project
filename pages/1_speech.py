@@ -3,13 +3,19 @@ import base64
 import requests
 import components
 import os
-from dotenv import load_dotenv
+import dotenv
 
-load_dotenv()
-
+dotenv.load_dotenv()
 api_key = os.getenv("API_KEY")
 
+
+
+
 def submit(image, api_key, voice, hd):
+
+    dotenv.load_dotenv()
+    api_key = os.getenv("API_KEY")  
+
     
     headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
 
@@ -79,6 +85,7 @@ def submit(image, api_key, voice, hd):
 
 
 def run():
+
     selected_option = st.radio(
         "Image Input",
         ["Camera", "Image File"],

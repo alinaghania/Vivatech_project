@@ -2,11 +2,11 @@ import streamlit as st
 
 
 def run():
-    
 
-    st.set_page_config(
-        page_title="Your mechano 🚗",
-        page_icon="🤖",
+
+    st.setpageconfig(
+        pagetitle="Your mechano 🚗",
+        pageicon="🤖",
         initial_sidebar_state="expanded",
     )
 
@@ -22,7 +22,8 @@ def run():
         """ by Yoan & Alina """
     )
     st.write("\n")
-   
 
-if __name__ == "__main__":
+
+if __name__ == "__main":
     run()
+    
